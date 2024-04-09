@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom color styles */
+.custom-color {
+  background-color: #f4991a; /* Custom orange color */
+}
+
+.custom-color:hover {
+  background-color: #cc7d16; /* Darker shade for hover state */
+}
+
+/* Custom Styles for Logo */
+.logo {
+  height: 60px; /* Defina a altura como automática para manter a proporção da imagem */
+  width: 6vw;
+  background-image: url('./../../../assets/img/logo_transparent.png'); /* Corrija o caminho da imagem */
+  background-size: contain; /* Garante que a imagem seja totalmente visível, mantendo a proporção */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Não repete a imagem */
+}
+
+
+.custom-color.text-white {
+  color: white;
+}
+
+header.body-font {
+  padding: 0.25rem 0;
+}
+
+/* Additional container styles, if needed */
+.container {
+  align-items: center; /* Aligns items vertically center in the container */
+  display: flex;
+  justify-content: space-between; /* This ensures the logo and nav are on opposite ends */
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0 0.5rem;
+}
+
+/* Header background image */
+body {
+  background-image: url('./../../../assets/img/adam-winger-KVVjmb3IIL8-unsplash.jpg'); /* Replace with the correct path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Make sure it covers the whole viewport height */
+}
+
+/* Modal overlay styles */
+#addressModal {
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 10; /* Ensure it's above other content */
+}
+
+/* Modal inner box styles */
+#addressModal .bg-white {
+  width: 80%;
+  max-width: 600px; /* Adjust the width as necessary */
+}
+
+/* Show/Hide modal */
+.hidden {
+  display: none;
+}
+
+/* Button and input styles */
+#addressInput, #useLocation, #closeModal {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#closeModal {
+  background-color: #f4991a;
+  color: white;
+  border: none;
+}
+
+/* Additional custom styles for login page */
+.flex.items-center.justify-center.min-h-screen {
+  background: url('./../../../assets/img/adam-winger-KVVjmb3IIL8-unsplash.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.bg-white.p-8.rounded-lg.shadow-lg.relative {
+  position: relative;
+  z-index: 1;
+}
+
+/* Opacity class for the background illustration */
+.opacity-50 {
+  opacity: 0.5;
+}
+
+/* Responsive design for the background image */
+@media (min-width: 768px) {
+  .bg-white.p-8.rounded-lg.shadow-lg.relative {
+    padding: 16px 32px;
+  }
+}
