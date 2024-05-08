@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-
 const esquema = mongoose.Schema({
 
   empresaServ: {
@@ -14,5 +13,8 @@ const esquema = mongoose.Schema({
   horarioFechamento: { type: Number, required: true },
 
 })
+
+
+
 
 export default mongoose.model('Servico', esquema, 'servicos')

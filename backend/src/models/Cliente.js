@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-
 const esquema = mongoose.Schema({
   nomeCompleto: { type: String, required: true },
   dataNascimento: { type: Date, required: false },
@@ -16,4 +15,8 @@ const esquema = mongoose.Schema({
   loginUsu: { type: String, required: true,},
   senhaUsu: { type: String, required: true,}
 })
+
+
+
+
 export default mongoose.model('Cliente', esquema, 'clientes')
