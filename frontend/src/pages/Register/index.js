@@ -1,4 +1,10 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+
+
 export default function Register() {
+  const [from, setFrom] = React.useState("");
   return (
     <>
       <meta charSet="UTF-8" />
