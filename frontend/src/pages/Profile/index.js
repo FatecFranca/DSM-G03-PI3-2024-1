@@ -6,14 +6,11 @@ export default function Profile() {
         SalonConnect - Encontre profissionais de beleza perto de você
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      {/* Tailwind CSS for styling */}
       <link
         href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css"
         rel="stylesheet"
       />
-      {/* Custom Stylesheet */}
       <link rel="stylesheet" href="styles.css" />
-      {/* Header Section */}
       <header className="text-gray-600 body-font shadow-sm">
         <div className="container mx-auto flex items-center justify-between py-2">
           <a

@@ -45,7 +45,8 @@ export default function About() {
             </a>
           </nav>
           <button
-            onclick="location.href='login.html';"
+            onclick="location.href='login.html';
+            "
             className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
           >
             Login

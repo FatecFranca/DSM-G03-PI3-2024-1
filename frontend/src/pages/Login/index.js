@@ -11,14 +11,17 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        'http://localhost:5000/api/auth/login',
+        {
+          email,
+          password,
+        },
+      );
 
       if (response.status === 200) {
         alert('Login successful');
-        history.push('/dashboard'); // Redireciona para o dashboard ou página inicial após o login bem-sucedido
+        history.push('/dashboard'); // Redirect to the dashboard or home page after a successful login
       }
     } catch (error) {
       console.error('Login failed', error);
@@ -39,9 +42,7 @@ export default function Login() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="max-w-lg w-full">
           <div className="bg-white p-8 rounded-lg shadow-lg relative">
-            <h2 className="text-2xl mb-2">
-              Bem-vindo de volta!
-            </h2>
+            <h2 className="text-2xl mb-2">Bem-vindo de volta!</h2>
             <p className="flex mb-4 justify-center items-center">
               Faça login para continuar
             </p>
