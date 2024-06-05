@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/cliente/login', {
+      const response = await axios.post('http://localhost:8080/Cliente/login', {
         loginUsu: username,
         senhaUsu: password
       });
       if (response.status === 200) {
         setMessage('Login bem-sucedido');
-        // Aqui você pode armazenar o token JWT no localStorage ou cookies se o back-end retornar um
+        // Redirecionar o usuário para o dashboard
+        navigate('/dashboard');
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
