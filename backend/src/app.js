@@ -1,13 +1,14 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express, { json, urlencoded } from "express";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
-import chalk from "chalk";
+import express, { json, urlencoded } from 'express';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import chalk from 'chalk';
+import cors from 'cors';
 
-import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/users.js";
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
 import clienteRouter from './routes/cliente.js';
 import empresaRouter from './routes/empresa.js';
 import servicoRouter from './routes/servico.js';
@@ -23,17 +24,19 @@ mongoose.connect(process.env.DATABASE_URL, {
   .then(() => console.log(chalk.green('Conectado ao MongoDB Atlas')))
   .catch((error) => console.error(chalk.red('Erro ao conectar ao MongoDB Atlas', error)));
 
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+// Configurar CORS
+app.use(cors());
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 app.use('/cliente', clienteRouter);
 app.use('/empresa', empresaRouter);
 app.use('/servico', servicoRouter);
 app.use('/atendimento', atendimentoRouter);
 
 export default app;
-
