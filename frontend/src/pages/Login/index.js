@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,12 +16,12 @@ export default function Login() {
         {
           email,
           password,
-        },
+        }
       );
 
       if (response.status === 200) {
         alert('Login successful');
-        history.push('/dashboard'); // Redirect to the dashboard or home page after a successful login
+        navigate('/dashboard'); // Redirect to the dashboard or home page after a successful login
       }
     } catch (error) {
       console.error('Login failed', error);

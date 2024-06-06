@@ -1,7 +1,6 @@
-import React from "react";
-import "./styles.css";
+import React from 'react';
+import './styles.css';
 import { Link } from 'react-router-dom';
-
 
 export default function Home() {
   return (
@@ -14,39 +13,36 @@ export default function Home() {
       {/* Header Section */}
       <header className="text-gray-600 body-font shadow-sm">
         <div className="container mx-auto flex items-center justify-between py-2">
-          <a
-            href="#"
+          <Link
+            to="/"
             className="flex title-font font-medium items-center text-gray-900"
-          ></a>
-          <a
-            href="#"
-            className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
           >
-            <div
-              className="logo">
-            </div>
-          </a>
-          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-            <a href="#" className="mr-5 hover:text-gray-900">
-              Inicio
-            </a>
-            <a href="#" className="mr-5 hover:text-gray-900">
-              Serviços
-            </a>
-            <a href="#" className="mr-5 hover:text-gray-900">
-              Sobre
-            </a>
-            <a href="#" className="mr-5 hover:text-gray-900">
-              Contato
-            </a>
-          </nav>
-          <Link to="/login" className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0">
-            <button
-              className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
-            >
-              Login
-            </button>
+            <img
+              src="logo_transparent.png"
+              alt="SalonConnect Logo"
+              className="logo"
+            />
           </Link>
+          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center">
+            <Link to="/" className="mr-5 hover:text-gray-900">
+              Inicio
+            </Link>
+            <Link to="/services" className="mr-5 hover:text-gray-900">
+              Serviços
+            </Link>
+            <Link to="/about" className="mr-5 hover:text-gray-900">
+              Sobre
+            </Link>
+            <Link to="/contact" className="mr-5 hover:text-gray-900">
+              Contato
+            </Link>
+          </nav>
+          <button
+            onClick={() => (window.location.href = 'login.html')}
+            className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
+          >
+            Login
+          </button>
         </div>
       </header>
       {/* Main Content Section */}
