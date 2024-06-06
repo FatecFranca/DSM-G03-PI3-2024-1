@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -17,7 +17,6 @@ const Login = () => {
       });
       if (response.status === 200) {
         setMessage('Login bem-sucedido');
-        // Redirecionar o usuário para o dashboard
         navigate('/dashboard');
       }
     } catch (error) {
@@ -55,6 +54,9 @@ const Login = () => {
           />
         </div>
         <button type="submit" style={styles.button}>Entrar</button>
+        <p>
+          Não tem uma conta? <Link to="/signup">Criar Conta</Link>
+        </p>
       </form>
     </div>
   );
