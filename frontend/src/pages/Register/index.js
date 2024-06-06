@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ export default function Register() {
 
       if (response.status === 201) {
         alert('User registered successfully');
-        history.push('/login');
+        navigate('/login');
       }
     } catch (error) {
       console.error('There was an error registering the user!', error);
