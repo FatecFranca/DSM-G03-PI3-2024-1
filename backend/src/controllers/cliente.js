@@ -59,4 +59,21 @@ controller.delete = async function(req, res) {
   }
 }
 
+
+controller.login = async function(req, res) {
+  const { loginUsu, senhaUsu } = req.body;
+  try {
+    const cliente = await Cliente.findOne({ loginUsu, senhaUsu });
+    if (cliente) {
+      // Autenticação bem-sucedida, pode retornar um token JWT ou apenas um status 200
+      res.status(200).json({ message: "Login bem-sucedido" });
+    } else {
+      res.status(401).json({ message: "Credenciais inválidas" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro interno do servidor" });
+  }
+};
+
 export default controller
