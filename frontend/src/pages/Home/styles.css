@@ -20,7 +20,7 @@ body, html {
 .logo {
   height: 60px; /* Defina a altura como automática para manter a proporção da imagem */
   width: 6vw;
-  background-image: url('./../../../assets/img/logo_transparent.png'); /* Corrija o caminho da imagem */
+  background-image: url('../../img/logo_transparent.png'); /* Corrija o caminho da imagem */
   background-size: contain; /* Garante que a imagem seja totalmente visível, mantendo a proporção */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Não repete a imagem */
@@ -50,7 +50,7 @@ nav a {
 
 /* Header background image */
 body {
-  background-image: url('./../../../assets/img/adam-winger-KVVjmb3IIL8-unsplash.jpg'); /* Replace with the correct path */
+  background-image: url('../../img/adam-winger-KVVjmb3IIL8-unsplash.jpg'); /* Replace with the correct path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -89,7 +89,7 @@ body {
 
 /* Additional custom styles for login page */
 .flex.items-center.justify-center.min-h-screen {
-  background: url('./../../../assets/img/adam-winger-KVVjmb3IIL8-unsplash.jpg') no-repeat center center;
+  background: url('../../img/adam-winger-KVVjmb3IIL8-unsplash.jpg') no-repeat center center;
   background-size: cover;
 }
 
@@ -108,4 +108,12 @@ body {
   .bg-white.p-8.rounded-lg.shadow-lg.relative {
     padding: 16px 32px;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

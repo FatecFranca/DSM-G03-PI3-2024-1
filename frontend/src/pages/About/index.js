@@ -12,6 +12,16 @@ export default function About() {
     setIsModalOpen(false);
   };
 
+  
+  const Logo = {
+    backgroundImage: `url(${require('../../img/logo_transparent.png')})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    width: '100px',
+    height: '55px',
+  };
+
+
   return (
     <>
       <meta charSet="UTF-8" />
@@ -33,11 +43,7 @@ export default function About() {
             to="/"
             className="flex title-font font-medium items-center text-gray-900"
           >
-            <img
-              src="logo_transparent.png"
-              alt="SalonConnect Logo"
-              className="logo"
-            />
+          <div style={Logo}></div>
           </Link>
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center">
             <Link to="/" className="mr-5 hover:text-gray-900">
@@ -53,12 +59,12 @@ export default function About() {
               Contato
             </Link>
           </nav>
-          <button
-            onClick={() => (window.location.href = 'login.html')}
+          <Link
+            to="/login"
             className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
           >
             Login
-          </button>
+          </Link>
         </div>
       </header>
       {/* Main Content Section */}

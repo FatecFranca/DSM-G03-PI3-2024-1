@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
 
+
+const Logo = {
+  backgroundImage: `url(${require('../../img/logo_transparent.png')})`,
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  width: '100px',
+  height: '55px',
+};
+
+
 export default function Home() {
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <>
       <meta charSet="UTF-8" />
@@ -17,11 +28,7 @@ export default function Home() {
             to="/"
             className="flex title-font font-medium items-center text-gray-900"
           >
-            <img
-              src="logo_transparent.png"
-              alt="SalonConnect Logo"
-              className="logo"
-            />
+            <div style={Logo}></div>
           </Link>
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center">
             <Link to="/" className="mr-5 hover:text-gray-900">
@@ -37,37 +44,49 @@ export default function Home() {
               Contato
             </Link>
           </nav>
-          <button
-            onClick={() => (window.location.href = 'login.html')}
+          <Link
+            to="/login"
             className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
           >
             Login
-          </button>
+          </Link>
         </div>
       </header>
       {/* Main Content Section */}
       <main className="mt-10">
         <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
           <div className="text-center lg:w-2/3 w-full">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              Encontre seu profissional
-            </h1>
-            <p className="mb-8 leading-relaxed">
-              Explore os melhores salões perto de você para todas as suas
-              necessidades de beleza, de cortes de cabelo a manicure
-            </p>
             <div className="flex justify-center">
               <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-                <input
-                  type="text"
-                  id="service-search"
-                  name="service-search"
-                  placeholder="Pesquisa de serviços (por exemplo, corte de cabelo, manicure)"
-                  className="w-full bg-white rounded border border-gray-400 focus:outline-none focus:border-pink-500 text-base px-4 py-2"
-                />
+              <input
+                type="text"
+                id="service-search"
+                name="service-search"
+                placeholder="      Pesquisar"
+                className="w-full bg-white rounded border border-gray-400 focus:outline-none focus:border-gray-500 text-base px-4 py-2"
+                onFocus={() => setIsVisible(!isVisible)}
+                onBlur={() => setIsVisible(!isVisible)}
+            />
+
+            <div style={{ position: 'absolute', left: 10, top: 10 }} className={isVisible ? 'hidden' : 'visible'}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="#F4991A"
+                    className="size-6"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                </svg>
+            </div>
               </div>
-              <button className="inline-flex text-white custom-color border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">
-                Procurar
+              <button className="inline-flex text-white custom-color border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">
+                Salões próximos
               </button>
             </div>
           </div>
