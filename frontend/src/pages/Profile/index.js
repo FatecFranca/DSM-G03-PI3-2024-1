@@ -12,29 +12,47 @@ export default function Profile() {
     setIsModalOpen(false);
   };
 
+  
+  
+  const Logo = {
+    backgroundImage: `url(${require('../../img/logo_transparent.png')})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    width: '100px',
+    height: '55px',
+  };
+
+
   return (
     <>
       <header className="text-gray-600 body-font shadow-sm">
         <div className="container mx-auto flex items-center justify-between py-2">
-          <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <img
-              src="logo_transparent.png"
-              alt="SalonConnect Logo"
-              className="logo"
-            />
+          <Link
+            to="/"
+            className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+          >
+          <div style={Logo}></div>
           </Link>
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center">
-            <Link to="/" className="mr-5 hover:text-gray-900">Inicio</Link>
-            <Link to="/services" className="mr-5 hover:text-gray-900">Serviços</Link>
-            <Link to="/about" className="mr-5 hover:text-gray-900">Sobre</Link>
-            <Link to="/contact" className="mr-5 hover:text-gray-900">Contato</Link>
+            <Link to="/" className="mr-5 hover:text-gray-900">
+              Inicio
+            </Link>
+            <Link to="/services" className="mr-5 hover:text-gray-900">
+              Serviços
+            </Link>
+            <Link to="/about" className="mr-5 hover:text-gray-900">
+              Sobre
+            </Link>
+            <Link to="/contact" className="mr-5 hover:text-gray-900">
+              Contato
+            </Link>
           </nav>
-          <button
-            onClick={() => window.location.href = 'login.html'}
+          <Link
+            to="/login"
             className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
           >
             Login
-          </button>
+          </Link>
         </div>
       </header>
       {/* Main Content Section */}
@@ -45,7 +63,8 @@ export default function Profile() {
               Encontre seu profissional
             </h1>
             <p className="mb-8 leading-relaxed">
-              Explore os melhores salões perto de você para todas as suas necessidades de beleza, de cortes de cabelo a manicure
+              Explore os melhores salões perto de você para todas as suas
+              necessidades de beleza, de cortes de cabelo a manicure
             </p>
             <div className="flex justify-center">
               <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">

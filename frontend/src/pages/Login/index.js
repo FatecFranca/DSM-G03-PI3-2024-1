@@ -1,31 +1,32 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
-      const response = await axios.post(
-        'http://localhost:5000/api/auth/login',
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post('http://localhost:8080/Cliente/login', {
+        loginUsu: username,
+        senhaUsu: password,
+      });
 
       if (response.status === 200) {
-        alert('Login successful');
-        navigate('/dashboard'); // Redirect to the dashboard or home page after a successful login
+        setMessage('Login bem-sucedido');
+        navigate('/dashboard'); // Redireciona para o dashboard após o login
       }
     } catch (error) {
-      console.error('Login failed', error);
-      alert('Invalid email or password');
+      if (error.response && error.response.status === 401) {
+        setMessage('Credenciais inválidas');
+      } else {
+        setMessage('Erro ao fazer login');
+      }
     }
   };
 
@@ -38,73 +39,56 @@ export default function Login() {
         href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css"
         rel="stylesheet"
       />
-      <link rel="stylesheet" href="styles.css" />
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="max-w-lg w-full">
-          <div className="bg-white p-8 rounded-lg shadow-lg relative">
-            <h2 className="text-2xl mb-2">Bem-vindo de volta!</h2>
-            <p className="flex mb-4 justify-center items-center">
-              Faça login para continuar
-            </p>
-            {/* Social Media Login */}
-            <button className="flex items-center justify-center mb-4 p-3 rounded-lg text-white bg-blue-500 hover:bg-blue-600 w-full">
-              <img src="face.png" alt="Facebook" className="h-6 w-6 mr-2" />
-              Continue com Facebook
-            </button>
-            <button className="flex items-center justify-center mb-4 p-3 rounded-lg text-white bg-gray-400 hover:bg-gray-500 w-full">
-              <img src="google.webp" alt="Google" className="h-6 w-6 mr-2" />
-              Continue com Google
-            </button>
-            {/* Email and Password Login */}
-            <form onSubmit={handleSubmit}>
-              <div className="flex flex-col gap-4 mb-4">
-                <input
-                  type="email"
-                  id="emailInput"
-                  placeholder="E-mail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="p-3 border border-gray-300 rounded-lg flex-grow"
-                  required
-                />
-                <input
-                  type="password"
-                  id="passwordInput"
-                  placeholder="Senha"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="p-3 border border-gray-300 rounded-lg flex-grow"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="p-3 rounded-lg text-white bg-blue-500 hover:bg-blue-600 w-full"
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg">
+          <div className='flex justify-between mb-4'>
+            <h2 className="text-2xl mb-6">Bem-vindo de volta!</h2>
+            <Link
+                to="/"
+                className="inline-flex items-center custom-color text-white rounded-full h-10 px-2 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
               >
-                Login
-              </button>
-            </form>
-            <hr className="my-8" />
-            <p className="text-center d-flex justify-content-center gap-3">
-              Não tem uma conta?
-              <div>
-                <Link
-                  to="/register"
-                  className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
-                >
-                  Criar conta
-                </Link>
-              </div>
-              <div>
-                <Link
-                  to="/"
-                  className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
-                >
-                  Voltar
-                </Link>
-              </div>
-            </p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+
+              </Link>
           </div>
+          {message && <p className="text-red-500 mb-4">{message}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-4 mb-4">
+              <input
+                type="username"
+                id="usernameInput"
+                placeholder="Usuario"
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
+                className="p-3 border border-gray-300 rounded-lg w-full"
+                required
+              />
+              <input
+                type="password"
+                id="passwordInput"
+                placeholder="Senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="p-3 border border-gray-300 rounded-lg w-full"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full p-3 rounded-lg text-white bg-custom-orange"
+            >
+              Login
+            </button>
+          </form>
+          <hr className="my-8" />
+          <p className="text-center">
+            Não tem uma conta?{' '}
+            <Link to="/register" className="text-blue-500 hover:underline">
+              Criar conta
+            </Link>
+          </p>
         </div>
       </div>
     </>
