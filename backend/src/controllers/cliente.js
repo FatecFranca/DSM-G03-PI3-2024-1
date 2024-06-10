@@ -67,7 +67,7 @@ controller.login = async function(req, res) {
   try {
     const cliente = await Cliente.findOne({ loginUsu, senhaUsu });
     if (cliente) {
-      // Gerar um token JWT
+    
       const token = jwt.sign({ id: cliente._id, loginUsu: cliente.loginUsu }, process.env.JWT_SECRET, { expiresIn: '1h' });
       res.status(200).json({ message: "Login bem-sucedido", token });
     } else {
