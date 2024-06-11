@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
 
-
 const Logo = {
   backgroundImage: `url(${require('../../img/logo_transparent.png')})`,
   backgroundSize: 'contain',
@@ -11,9 +10,19 @@ const Logo = {
   height: '55px',
 };
 
-
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <meta charSet="UTF-8" />
@@ -58,32 +67,36 @@ export default function Home() {
           <div className="text-center lg:w-2/3 w-full">
             <div className="flex justify-center">
               <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-              <input
-                type="text"
-                id="service-search"
-                name="service-search"
-                placeholder="      Pesquisar"
-                className="w-full bg-white rounded border border-gray-400 focus:outline-none focus:border-gray-500 text-base px-4 py-2"
-                onFocus={() => setIsVisible(!isVisible)}
-                onBlur={() => setIsVisible(!isVisible)}
-            />
+                <input
+                  type="text"
+                  id="service-search"
+                  name="service-search"
+                  placeholder="      Pesquisar"
+                  className="w-full bg-white rounded border border-gray-400 focus:outline-none focus:border-gray-500 text-base px-4 py-2"
+                  onFocus={() => setIsVisible(!isVisible)}
+                  onBlur={() => setIsVisible(!isVisible)}
+                  onClick={openModal}
+                />
 
-            <div style={{ position: 'absolute', left: 10, top: 10 }} className={isVisible ? 'hidden' : 'visible'}>
-                <svg
+                <div
+                  style={{ position: 'absolute', left: 10, top: 10 }}
+                  className={isVisible ? 'hidden' : 'visible'}
+                >
+                  <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
                     stroke="#F4991A"
                     className="size-6"
-                >
+                  >
                     <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                     />
-                </svg>
-            </div>
+                  </svg>
+                </div>
               </div>
               <button className="inline-flex text-white custom-color border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">
                 Salões próximos
@@ -118,7 +131,34 @@ export default function Home() {
           </button>
         </div>
       </div>
-      {/* JavaScript File */}
+      {isModalOpen && (
+        <div
+          id="addressModal"
+          className="fixed inset-0 bg-white bg-opacity-75 flex justify-center items-center"
+        >
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-xl mb-4">Qual seu endereço?</h2>
+            <input
+              type="text"
+              id="addressInput"
+              placeholder="Digite seu endereço"
+              className="mb-4 p-2 border border-gray-300 rounded w-full"
+            />
+            <button
+              id="useLocation"
+              className="p-2 border border-gray-300 rounded w-full mb-4"
+            >
+              Use minha localização
+            </button>
+            <button
+              onClick={closeModal}
+              className="bg-red-500 text-white p-2 rounded w-full"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
