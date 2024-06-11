@@ -13,6 +13,7 @@ import clienteRouter from './routes/cliente.js';
 import empresaRouter from './routes/empresa.js';
 import servicoRouter from './routes/servico.js';
 import atendimentoRouter from './routes/atendimento.js';
+import carrinhoRouter from './routes/carrinho.js';
 
 const app = express();
 
@@ -38,5 +39,7 @@ app.use('/cliente', clienteRouter);
 app.use('/empresa', empresaRouter);
 app.use('/servico', servicoRouter);
 app.use('/atendimento', atendimentoRouter);
+app.use('/carrinho', carrinhoRouter);
 
 export default app;
+
