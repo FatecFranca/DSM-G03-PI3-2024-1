@@ -1,5 +1,7 @@
 import Cliente from '../models/Cliente.js'
+import jwt from 'jsonwebtoken';
 const controller = {} 
+
 
 controller.create = async function(req, res) {
   try {
@@ -65,8 +67,9 @@ controller.login = async function(req, res) {
   try {
     const cliente = await Cliente.findOne({ loginUsu, senhaUsu });
     if (cliente) {
-      // Autenticação bem-sucedida, pode retornar um token JWT ou apenas um status 200
-      res.status(200).json({ message: "Login bem-sucedido" });
+    
+      const token = jwt.sign({ id: cliente._id, loginUsu: cliente.loginUsu }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      res.status(200).json({ message: "Login bem-sucedido", token });
     } else {
       res.status(401).json({ message: "Credenciais inválidas" });
     }

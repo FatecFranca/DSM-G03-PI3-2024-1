@@ -1,9 +1,10 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
-  const [username, setusername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
@@ -12,12 +13,14 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/Cliente/login', {
+      const response = await axios.post('http://localhost:8080/cliente/login', {
         loginUsu: username,
         senhaUsu: password,
       });
 
       if (response.status === 200) {
+        const { token } = response.data;
+        localStorage.setItem('token', token); // Armazena o token no localStorage
         setMessage('Login bem-sucedido');
         navigate('/dashboard'); // Redireciona para o dashboard após o login
       }
@@ -50,7 +53,6 @@ export default function Login() {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
-
               </Link>
           </div>
           {message && <p className="text-red-500 mb-4">{message}</p>}
@@ -61,7 +63,7 @@ export default function Login() {
                 id="usernameInput"
                 placeholder="Usuario"
                 value={username}
-                onChange={(e) => setusername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 className="p-3 border border-gray-300 rounded-lg w-full"
                 required
               />
