@@ -5,7 +5,7 @@ const carrinhoController = {};
 carrinhoController.adicionarItem = async function(req, res) {
   try {
     const { servico, quantidade, precoUnitario } = req.body;
-    const usuarioId = req.user.id; // Certifique-se de usar 'id' aqui
+    const usuarioId = req.user.id; 
 
     console.log('Dados recebidos:', { servico, quantidade, precoUnitario, usuarioId });
 
