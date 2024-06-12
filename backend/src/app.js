@@ -30,7 +30,6 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Configurar CORS
 app.use(cors());
 
 app.use('/', indexRouter);
