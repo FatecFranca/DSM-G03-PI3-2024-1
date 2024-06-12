@@ -62,21 +62,30 @@ controller.delete = async function(req, res) {
 }
 
 
+
+
+
 controller.login = async function(req, res) {
   const { loginUsu, senhaUsu } = req.body;
   try {
     const cliente = await Cliente.findOne({ loginUsu, senhaUsu });
     if (cliente) {
-    
-      const token = jwt.sign({ id: cliente._id, loginUsu: cliente.loginUsu }, process.env.JWT_SECRET, { expiresIn: '1h' });
-      res.status(200).json({ message: "Login bem-sucedido", token });
+      const token = jwt.sign(
+        { id: cliente._id, loginUsu: cliente.loginUsu, nome: cliente.nomeCompleto },
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' }
+      );
+      res.status(200).json({ message: 'Login bem-sucedido', token });
     } else {
-      res.status(401).json({ message: "Credenciais inválidas" });
+      res.status(401).json({ message: 'Credenciais inválidas' });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Erro interno do servidor" });
+    res.status(500).json({ message: 'Erro interno do servidor' });
   }
 };
+
+
+
 
 export default controller
