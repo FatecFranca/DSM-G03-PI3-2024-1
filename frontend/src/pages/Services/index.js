@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import { Carousel, Typography, Button } from '@material-tailwind/react';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
@@ -167,7 +168,7 @@ export default function Services() {
       <main className="mt-10">
         <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col h-full">
           <div className="text-center w-full flex justify-center">
-            <div className="card bg-base-100 w-2/12 w-5/12 shadow-2xl bg-white shadow-black rounded p-3 flex">
+            <div className="card bg-base-100 w-2/12 w-5/12 shadow-2xl bg-white shadow-yellow rounded p-3 flex">
               <div
                 className="flex justify-center align-center col-span-2"
                 style={Cabeleleira}
@@ -187,7 +188,7 @@ export default function Services() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="card bg-base-100 w-2/12 mt-3 shadow-2xl bg-white shadow-black rounded p-3 flex flex-col cursor-pointer"
+                className="card bg-base-100 w-2/12 mt-3 shadow-2xl bg-white shadow-yellow rounded p-3 flex flex-col cursor-pointer"
                 onClick={() => openModal(index)}
               >
                 <div style={service.style}></div>
@@ -207,39 +208,320 @@ export default function Services() {
               overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
             >
               <div className="bg-white rounded-lg p-6 w-3/4 h-5/6 flex">
-                <div className="w-6/12 h-96 mb-4">
-                  <div className="w-full" style={service.style}></div>
-                  <button
-                    onClick={closeModal}
-                    className="inline-flex items-center px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  >
-                    Fechar
-                  </button>
+                <div className="w-6/12 h-full mb-4">
+                  <div className="w-full flex justify-center items-center h-full">
+                    <div className="w-96 h-full flex justify-center items-center">
+                      <div
+                        className="w-full h-full"
+                        style={service.style}
+                      ></div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex">
+                <div className="flex mt-12">
                   <div className="flex flex-col">
                     <div className="w-full flex justify-center">
                       <p className="title-font text-2xl mb-4 font-medium text-gray-900">
                         {service.title}
                       </p>
                     </div>
-                    <div className="p-4 flex">
+                    <div className="p-4 flex h-1/6">
                       <div
                         className="flex justify-center align-center"
                         style={Cabeleleira}
                       ></div>
                       <div className="text-center w-full flex justify-center align-center h-full">
-                        <p className="title-font text-xl mb-4 font-medium text-gray-900">
+                        <p className="title-font text-xl mt-10 font-medium text-gray-900">
                           Serviços do Salão - Unidade Centro
                         </p>
-                        <p className="title-font text-xl mb-4 font-medium text-yellow-400">
+                        <p className="title-font text-xl mt-10 font-medium text-yellow-400">
                           ★ 4.5 (200 avaliações)
                         </p>
                       </div>
                     </div>
-                    <div className="w-full flex justify-center text-lg font-medium card bg-base-100 shadow-2xl bg-white shadow-black rounded p-3">
-                      Selecione o tipo desejado:
-                    </div>
+                    <Carousel className="rounded-xl bg-gray-200">
+                      <div className="relative h-full w-full">
+                        <div className="absolute inset-0 grid h-full w-full place-items-center">
+                          <div className="w-full">
+                            <Typography
+                              variant="lead"
+                              color="black"
+                              className="mb-12 opacity-80"
+                            >
+                              <div className="w-full flex justify-center flex-col">
+                                <div className="w-full flex justify-center text-lg font-medium card bg-base-100  bg-gray-200 rounded p-3">
+                                  Informe o tipo de seu cabelo:
+                                </div>
+                                <div className="w-full flex justify-center flex-col p-6">
+                                  <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
+                                    <div class="inline-flex items-center">
+                                      <label
+                                        class="relative flex items-center p-3 rounded-full cursor-pointer"
+                                        htmlFor="yellow"
+                                      >
+                                        <input
+                                          name="color"
+                                          type="radio"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="yellow"
+                                        />
+                                        <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-3.5 w-3.5"
+                                            viewBox="0 0 16 16"
+                                            fill="#FEF08A"
+                                          >
+                                            <circle
+                                              data-name="ellipse"
+                                              cx="8"
+                                              cy="8"
+                                              r="8"
+                                            ></circle>
+                                          </svg>
+                                        </span>
+                                      </label>
+                                    </div>{' '}
+                                    <p>Curto</p> <p>R$ 50</p>
+                                  </div>
+                                  <hr />
+                                  <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
+                                    <div class="inline-flex items-center">
+                                      <label
+                                        class="relative flex items-center p-3 rounded-full cursor-pointer"
+                                        htmlFor="yellow"
+                                      >
+                                        <input
+                                          name="color"
+                                          type="radio"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="yellow"
+                                        />
+                                        <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-3.5 w-3.5"
+                                            viewBox="0 0 16 16"
+                                            fill="#FEF08A"
+                                          >
+                                            <circle
+                                              data-name="ellipse"
+                                              cx="8"
+                                              cy="8"
+                                              r="8"
+                                            ></circle>
+                                          </svg>
+                                        </span>
+                                      </label>
+                                    </div>{' '}
+                                    <p>Médio</p> <p>R$ 60</p>
+                                  </div>
+                                  <hr />
+                                  <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
+                                    <div class="inline-flex items-center">
+                                      <label
+                                        class="relative flex items-center p-3 rounded-full cursor-pointer"
+                                        htmlFor="yellow"
+                                      >
+                                        <input
+                                          name="color"
+                                          type="radio"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="yellow"
+                                        />
+                                        <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-3.5 w-3.5"
+                                            viewBox="0 0 16 16"
+                                            fill="#FEF08A"
+                                          >
+                                            <circle
+                                              data-name="ellipse"
+                                              cx="8"
+                                              cy="8"
+                                              r="8"
+                                            ></circle>
+                                          </svg>
+                                        </span>
+                                      </label>
+                                    </div>{' '}
+                                    <p>Longo</p> <p>R$ 70</p>
+                                  </div>
+                                  <hr />
+                                  <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
+                                    <div class="inline-flex items-center">
+                                      <label
+                                        class="relative flex items-center p-3 rounded-full cursor-pointer"
+                                        htmlFor="yellow"
+                                      >
+                                        <input
+                                          name="color"
+                                          type="radio"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="yellow"
+                                        />
+                                        <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-3.5 w-3.5"
+                                            viewBox="0 0 16 16"
+                                            fill="#FEF08A"
+                                          >
+                                            <circle
+                                              data-name="ellipse"
+                                              cx="8"
+                                              cy="8"
+                                              r="8"
+                                            ></circle>
+                                          </svg>
+                                        </span>
+                                      </label>
+                                    </div>{' '}
+                                    <p>Cacheado</p> <p>R$ 60</p>
+                                  </div>
+                                  <hr />
+                                  <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
+                                    <div class="inline-flex items-center">
+                                      <label
+                                        class="relative flex items-center p-3 rounded-full cursor-pointer"
+                                        htmlFor="yellow"
+                                      >
+                                        <input
+                                          name="color"
+                                          type="radio"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="yellow"
+                                        />
+                                        <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-3.5 w-3.5"
+                                            viewBox="0 0 16 16"
+                                            fill="#FEF08A"
+                                          >
+                                            <circle
+                                              data-name="ellipse"
+                                              cx="8"
+                                              cy="8"
+                                              r="8"
+                                            ></circle>
+                                          </svg>
+                                        </span>
+                                      </label>
+                                    </div>{' '}
+                                    <p>Chapinha</p> <p>R$ 50</p>
+                                  </div>
+                                  <hr />
+                                </div>
+                              </div>
+                            </Typography>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="relative h-full w-full">
+                        <div className="absolute inset-0 grid h-full w-full items-center">
+                          <div className="w-full">
+                            <Typography
+                              variant="lead"
+                              color="black"
+                              className="mb-12 opacity-80"
+                            >
+                              <div className="w-full flex justify-center flex-col">
+                                <div className="w-full flex justify-center text-lg font-medium card bg-base-100 gap-2 bg-gray-200 rounded p-3">
+                                  Selecione o profissional{' '}
+                                  <p className="rounded-full px-2 bg-gray-800 text-white">
+                                    obrigatório
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="w-full flex justify-center flex-col p-6">
+                                <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
+                                  <div class="inline-flex items-center">
+                                    <label
+                                      class="relative flex items-center p-3 rounded-full cursor-pointer"
+                                      htmlFor="yellow"
+                                    >
+                                      <input
+                                        name="color"
+                                        type="radio"
+                                        class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
+                                        id="yellow"
+                                      />
+                                      <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          class="h-3.5 w-3.5"
+                                          viewBox="0 0 16 16"
+                                          fill="#FEF08A"
+                                        >
+                                          <circle
+                                            data-name="ellipse"
+                                            cx="8"
+                                            cy="8"
+                                            r="8"
+                                          ></circle>
+                                        </svg>
+                                      </span>
+                                    </label>
+                                  </div>{' '}
+                                  <p>Curto</p> <p>R$ 50</p>
+                                </div>
+                                <hr />
+                                <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
+                                  <div class="inline-flex items-center">
+                                    <label
+                                      class="relative flex items-center p-3 rounded-full cursor-pointer"
+                                      htmlFor="yellow"
+                                    >
+                                      <input
+                                        name="color"
+                                        type="radio"
+                                        class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
+                                        id="yellow"
+                                      />
+                                      <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          class="h-3.5 w-3.5"
+                                          viewBox="0 0 16 16"
+                                          fill="#FEF08A"
+                                        >
+                                          <circle
+                                            data-name="ellipse"
+                                            cx="8"
+                                            cy="8"
+                                            r="8"
+                                          ></circle>
+                                        </svg>
+                                      </span>
+                                    </label>
+                                  </div>{' '}
+                                  <p>Médio</p> <p>R$ 60</p>
+                                </div>
+                              </div>
+                            </Typography>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="relative h-full w-full">
+                        <div className="absolute inset-0 grid h-full w-full items-end">
+                          <div className="w-full">
+                            <Typography
+                              variant="lead"
+                              color="black"
+                              className="mb-12 opacity-80"
+                            >
+                              <div className="w-full flex justify-center flex-col">
+                                <div className="w-full flex justify-center text-lg font-medium card bg-base-100  bg-gray-200 rounded p-3">
+                                  Informe o tipo de seu cabelo:
+                                </div>
+                              </div>
+                            </Typography>
+                          </div>
+                        </div>
+                      </div>
+                    </Carousel>
                   </div>
                 </div>
               </div>
