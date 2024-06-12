@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
-import { Carousel, Typography, Button } from '@material-tailwind/react';
+import { Carousel, Typography, IconButton } from '@material-tailwind/react';
 
 Modal.setAppElement('#root'); // Set the app root element for accessibility
 
@@ -153,9 +153,6 @@ export default function Services() {
             <Link to="/about" className="mr-5 hover:text-gray-900">
               Sobre
             </Link>
-            <Link to="/contact" className="mr-5 hover:text-gray-900">
-              Contato
-            </Link>
           </nav>
           <Link
             to="/login"
@@ -166,7 +163,7 @@ export default function Services() {
         </div>
       </header>
       <main className="mt-10">
-        <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col h-full">
+        <div className="container mx-auto flex px-5 py-24 items-center justify-start flex-col h-screen">
           <div className="text-center w-full flex justify-center">
             <div className="card bg-base-100 w-2/12 w-5/12 shadow-2xl bg-white shadow-yellow rounded p-3 flex">
               <div
@@ -184,11 +181,11 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-around gap-x-32 gap-y-12 w-full h-screen mt-12">
+          <div className="flex flex-wrap justify-around gap-x-32 gap-y-12 w-full h-1/2 mt-12">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="card bg-base-100 w-2/12 mt-3 shadow-2xl bg-white shadow-yellow rounded p-3 flex flex-col cursor-pointer"
+                className="card bg-base-100 w-2/12 h-2/3 mt-3 shadow-2xl bg-white shadow-yellow rounded p-3 flex flex-col cursor-pointer"
                 onClick={() => openModal(index)}
               >
                 <div style={service.style}></div>
@@ -239,7 +236,31 @@ export default function Services() {
                         </p>
                       </div>
                     </div>
-                    <Carousel className="rounded-xl bg-gray-200">
+                    <Carousel
+                      className="rounded-xl"
+                      prevArrow={({ handlePrev }) => (
+                        <IconButton
+                          variant="text"
+                          color="white"
+                          size="lg"
+                          onClick={handlePrev}
+                          className="!absolute bottom-4 !left-4 p-3 rounded-lg text-white bg-blue-500 hover:bg-blue-600 bg-custom-orange w-48 mt-4"
+                        >
+                          Voltar
+                        </IconButton>
+                      )}
+                      nextArrow={({ handleNext }) => (
+                        <IconButton
+                          variant="text"
+                          color="black"
+                          size="lg"
+                          onClick={handleNext}
+                          className="!absolute bottom-4 !right-4 p-3 rounded-lg text-white bg-blue-500 hover:bg-blue-600 bg-custom-orange w-48 mt-4"
+                        >
+                          Próximo
+                        </IconButton>
+                      )}
+                    >
                       <div className="relative h-full w-full">
                         <div className="absolute inset-0 grid h-full w-full place-items-center">
                           <div className="w-full">
@@ -257,20 +278,20 @@ export default function Services() {
                                     <div class="inline-flex items-center">
                                       <label
                                         class="relative flex items-center p-3 rounded-full cursor-pointer"
-                                        htmlFor="yellow"
+                                        htmlFor="tipoCabelo"
                                       >
                                         <input
                                           name="color"
                                           type="radio"
-                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
-                                          id="yellow"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-600 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-600 before:opacity-0 before:transition-opacity checked:border-yellow-600 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="tipoCabelo"
                                         />
                                         <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-3.5 w-3.5"
                                             viewBox="0 0 16 16"
-                                            fill="#FEF08A"
+                                            fill="#ca8a04"
                                           >
                                             <circle
                                               data-name="ellipse"
@@ -289,20 +310,20 @@ export default function Services() {
                                     <div class="inline-flex items-center">
                                       <label
                                         class="relative flex items-center p-3 rounded-full cursor-pointer"
-                                        htmlFor="yellow"
+                                        htmlFor="tipoCabelo"
                                       >
                                         <input
                                           name="color"
                                           type="radio"
-                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
-                                          id="yellow"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-600 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-600 before:opacity-0 before:transition-opacity checked:border-yellow-600 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="tipoCabelo"
                                         />
                                         <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-3.5 w-3.5"
                                             viewBox="0 0 16 16"
-                                            fill="#FEF08A"
+                                            fill="#ca8a04"
                                           >
                                             <circle
                                               data-name="ellipse"
@@ -321,20 +342,20 @@ export default function Services() {
                                     <div class="inline-flex items-center">
                                       <label
                                         class="relative flex items-center p-3 rounded-full cursor-pointer"
-                                        htmlFor="yellow"
+                                        htmlFor="tipoCabelo"
                                       >
                                         <input
                                           name="color"
                                           type="radio"
-                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
-                                          id="yellow"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-600 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-600 before:opacity-0 before:transition-opacity checked:border-yellow-600 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="tipoCabelo"
                                         />
                                         <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-3.5 w-3.5"
                                             viewBox="0 0 16 16"
-                                            fill="#FEF08A"
+                                            fill="#ca8a04"
                                           >
                                             <circle
                                               data-name="ellipse"
@@ -353,20 +374,20 @@ export default function Services() {
                                     <div class="inline-flex items-center">
                                       <label
                                         class="relative flex items-center p-3 rounded-full cursor-pointer"
-                                        htmlFor="yellow"
+                                        htmlFor="tipoCabelo"
                                       >
                                         <input
                                           name="color"
                                           type="radio"
-                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
-                                          id="yellow"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-600 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-600 before:opacity-0 before:transition-opacity checked:border-yellow-600 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="tipoCabelo"
                                         />
                                         <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-3.5 w-3.5"
                                             viewBox="0 0 16 16"
-                                            fill="#FEF08A"
+                                            fill="#ca8a04"
                                           >
                                             <circle
                                               data-name="ellipse"
@@ -385,20 +406,20 @@ export default function Services() {
                                     <div class="inline-flex items-center">
                                       <label
                                         class="relative flex items-center p-3 rounded-full cursor-pointer"
-                                        htmlFor="yellow"
+                                        htmlFor="tipoCabelo"
                                       >
                                         <input
                                           name="color"
                                           type="radio"
-                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
-                                          id="yellow"
+                                          class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-600 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-600 before:opacity-0 before:transition-opacity checked:border-yellow-600 checked:before:bg-gray-900 hover:before:opacity-10"
+                                          id="tipoCabelo"
                                         />
                                         <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-3.5 w-3.5"
                                             viewBox="0 0 16 16"
-                                            fill="#FEF08A"
+                                            fill="#ca8a04"
                                           >
                                             <circle
                                               data-name="ellipse"
@@ -420,8 +441,8 @@ export default function Services() {
                         </div>
                       </div>
                       <div className="relative h-full w-full">
-                        <div className="absolute inset-0 grid h-full w-full items-center">
-                          <div className="w-full">
+                        <div className="absolute inset-0 grid h-full w-full items-center flex">
+                          <div className="w-full h-full">
                             <Typography
                               variant="lead"
                               color="black"
@@ -436,68 +457,82 @@ export default function Services() {
                                 </div>
                               </div>
                               <div className="w-full flex justify-center flex-col p-6">
-                                <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
-                                  <div class="inline-flex items-center">
+                                <div className="flex w-full px-12 text-xl font-medium justify-between">
+                                  <div className="inline-flex items-center">
                                     <label
-                                      class="relative flex items-center p-3 rounded-full cursor-pointer"
-                                      htmlFor="yellow"
+                                      className="relative flex items-center p-3 rounded-full cursor-pointer"
+                                      htmlFor="profissional1"
                                     >
                                       <input
-                                        name="color"
+                                        name="profissional"
                                         type="radio"
-                                        class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
-                                        id="yellow"
+                                        className="peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-600 transition-all checked:border-yellow-600 checked:bg-yellow-600"
+                                        id="profissional1"
                                       />
-                                      <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                      <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
-                                          class="h-3.5 w-3.5"
+                                          className="h-3.5 w-3.5"
                                           viewBox="0 0 16 16"
-                                          fill="#FEF08A"
+                                          fill="#ca8a04"
                                         >
-                                          <circle
-                                            data-name="ellipse"
-                                            cx="8"
-                                            cy="8"
-                                            r="8"
-                                          ></circle>
+                                          <circle cx="8" cy="8" r="8"></circle>
                                         </svg>
                                       </span>
                                     </label>
-                                  </div>{' '}
-                                  <p>Curto</p> <p>R$ 50</p>
+                                  </div>
+                                  <div className="mt-10 p-5 flex h-48 justify-start w-full align-center col-span-2 rounded-full">
+                                    <div className="flex h-48 justify-start w-full align-center col-span-2 rounded-full">
+                                      <div className="w-36">
+                                        <div
+                                          className="flex justify-center align-center col-span-2 rounded-full"
+                                          style={service.style}
+                                        ></div>
+                                      </div>
+                                    </div>
+                                    <div className="h-full flex justify-center align-center mt-5 p-5">
+                                      <p>Nome</p>
+                                    </div>
+                                  </div>
                                 </div>
                                 <hr />
-                                <div className="flex w-full p-6 px-12 text-xl font-medium justify-between">
-                                  <div class="inline-flex items-center">
+                                <div className="flex w-full px-12 text-xl font-medium justify-between">
+                                  <div className="inline-flex items-center">
                                     <label
-                                      class="relative flex items-center p-3 rounded-full cursor-pointer"
-                                      htmlFor="yellow"
+                                      className="relative flex items-center p-3 rounded-full cursor-pointer"
+                                      htmlFor="profissional2"
                                     >
                                       <input
-                                        name="color"
+                                        name="profissional"
                                         type="radio"
-                                        class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-yellow-500 before:opacity-0 before:transition-opacity checked:border-yellow-200 checked:before:bg-gray-900 hover:before:opacity-10"
-                                        id="yellow"
+                                        className="peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-yellow-600 transition-all checked:border-yellow-600 checked:bg-yellow-600"
+                                        id="profissional2"
                                       />
-                                      <span class="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                      <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
-                                          class="h-3.5 w-3.5"
+                                          className="h-3.5 w-3.5"
                                           viewBox="0 0 16 16"
-                                          fill="#FEF08A"
+                                          fill="#ca8a04"
                                         >
-                                          <circle
-                                            data-name="ellipse"
-                                            cx="8"
-                                            cy="8"
-                                            r="8"
-                                          ></circle>
+                                          <circle cx="8" cy="8" r="8"></circle>
                                         </svg>
                                       </span>
                                     </label>
-                                  </div>{' '}
-                                  <p>Médio</p> <p>R$ 60</p>
+                                  </div>
+                                  <div className="mt-10 p-5 flex h-48 justify-start w-full align-center col-span-2 rounded-full">
+                                    <div className="flex h-48 justify-start w-full align-center col-span-2 rounded-full">
+                                      <div className="w-36">
+                                        <div
+                                          className="flex justify-center align-center col-span-2 rounded-full"
+                                          style={service.style}
+                                        ></div>
+                                      </div>
+                                    </div>
+                                    <div className="h-full flex justify-center align-center mt-5 p-5">
+                                      <p>Nome</p>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </Typography>
@@ -506,7 +541,7 @@ export default function Services() {
                       </div>
                       <div className="relative h-full w-full">
                         <div className="absolute inset-0 grid h-full w-full items-end">
-                          <div className="w-full">
+                          <div className="w-full h-full">
                             <Typography
                               variant="lead"
                               color="black"
@@ -514,7 +549,110 @@ export default function Services() {
                             >
                               <div className="w-full flex justify-center flex-col">
                                 <div className="w-full flex justify-center text-lg font-medium card bg-base-100  bg-gray-200 rounded p-3">
-                                  Informe o tipo de seu cabelo:
+                                  Selecione o horário:
+                                </div>
+                              </div>
+                              <div className="w-full h-full flex justify-center items-center flex-col">
+                                <div className="grid grid-cols-3 gap-10 w-full p-6 mt-12">
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="7:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      7:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="8:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      8:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="9:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      9:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="10:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      10:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="11:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      11:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="12:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      12:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="13:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      13:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="14:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      14:00
+                                    </span>
+                                  </label>
+                                  <label className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200">
+                                    <input
+                                      type="radio"
+                                      name="time"
+                                      value="15:00"
+                                      className="hidden peer"
+                                    />
+                                    <span className="peer-checked:bg-yellow-600 peer-checked:text-white px-4 py-2 w-full text-center rounded">
+                                      15:00
+                                    </span>
+                                  </label>
                                 </div>
                               </div>
                             </Typography>

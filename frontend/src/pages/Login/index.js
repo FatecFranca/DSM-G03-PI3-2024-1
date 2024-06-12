@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -22,7 +21,7 @@ export default function Login() {
         const { token } = response.data;
         localStorage.setItem('token', token); // Armazena o token no localStorage
         setMessage('Login bem-sucedido');
-        navigate('/dashboard'); // Redireciona para o dashboard após o login
+        navigate('/'); // Redireciona para o dashboard após o login
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -44,16 +43,27 @@ export default function Login() {
       />
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg">
-          <div className='flex justify-between mb-4'>
+          <div className="flex justify-between mb-4">
             <h2 className="text-2xl mb-6">Bem-vindo de volta!</h2>
             <Link
-                to="/"
-                className="inline-flex items-center custom-color text-white rounded-full h-10 px-2 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
+              to="/"
+              className="inline-flex items-center custom-color text-white rounded-full h-10 px-2 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
-              </Link>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
+              </svg>
+            </Link>
           </div>
           {message && <p className="text-red-500 mb-4">{message}</p>}
           <form onSubmit={handleSubmit}>

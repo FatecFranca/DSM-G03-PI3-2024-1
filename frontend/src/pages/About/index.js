@@ -53,9 +53,6 @@ export default function About() {
             <Link to="/about" className="mr-5 hover:text-gray-900">
               Sobre
             </Link>
-            <Link to="/contact" className="mr-5 hover:text-gray-900">
-              Contato
-            </Link>
           </nav>
           <Link
             to="/login"
