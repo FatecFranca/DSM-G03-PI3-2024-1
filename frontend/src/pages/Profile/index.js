@@ -1,55 +1,55 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 export default function Profile() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  
+  
+  const Logo = {
+    backgroundImage: `url(${require('../../img/logo_transparent.png')})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    width: '100px',
+    height: '55px',
+  };
+
+
   return (
     <>
-      <meta charSet="UTF-8" />
-      <title>
-        SalonConnect - Encontre profissionais de beleza perto de você
-      </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      {/* Tailwind CSS for styling */}
-      <link
-        href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css"
-        rel="stylesheet"
-      />
-      {/* Custom Stylesheet */}
-      <link rel="stylesheet" href="styles.css" />
-      {/* Header Section */}
       <header className="text-gray-600 body-font shadow-sm">
         <div className="container mx-auto flex items-center justify-between py-2">
-          <a
-            href="#"
-            className="flex title-font font-medium items-center text-gray-900"
-          ></a>
-          <a
-            href="#"
+          <Link
+            to="/"
             className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
           >
-            <img
-              src="logo_transparent.png"
-              alt="SalonConnect Logo"
-              className="logo"
-            />
-          </a>
-          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-            <a href="#" className="mr-5 hover:text-gray-900">
+          <div style={Logo}></div>
+          </Link>
+          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center">
+            <Link to="/" className="mr-5 hover:text-gray-900">
               Inicio
-            </a>
-            <a href="#" className="mr-5 hover:text-gray-900">
-              Serviços
-            </a>
-            <a href="#" className="mr-5 hover:text-gray-900">
+            </Link>
+            <Link to="/services" className="mr-5 hover:text-gray-900">
+              Serviços
+            </Link>
+            <Link to="/about" className="mr-5 hover:text-gray-900">
               Sobre
-            </a>
-            <a href="#" className="mr-5 hover:text-gray-900">
-              Contato
-            </a>
+            </Link>
           </nav>
-          <button
-            onclick="location.href='login.html';"
+          <Link
+            to="/login"
             className="inline-flex items-center custom-color text-white border-0 py-1 px-3 focus:outline-none hover:bg-opacity-90 rounded text-base mt-4 md:mt-0"
           >
             Login
-          </button>
+          </Link>
         </div>
       </header>
       {/* Main Content Section */}
@@ -77,36 +77,45 @@ export default function Profile() {
                 Procurar
               </button>
             </div>
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={openModal}
+                className="inline-flex text-white custom-color border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg"
+              >
+                Enter Address
+              </button>
+            </div>
           </div>
         </div>
       </main>
-      <div
-        id="addressModal"
-        className="hidden fixed inset-0 bg-white bg-opacity-75 flex justify-center items-center"
-      >
-        <div className="bg-white rounded-lg p-8">
-          <h2 className="text-xl mb-4">Qual seu endereço?</h2>
-          <input
-            type="text"
-            id="addressInput"
-            placeholder="Digite seu endereço"
-            className="mb-4 p-2 border border-gray-300 rounded w-full"
-          />
-          <button
-            id="useLocation"
-            className="p-2 border border-gray-300 rounded w-full mb-4"
-          >
-            Use minha localização
-          </button>
-          <button
-            id="closeModal"
-            className="bg-red-500 text-white p-2 rounded w-full"
-          >
-            Fechar
-          </button>
+      {isModalOpen && (
+        <div
+          id="addressModal"
+          className="fixed inset-0 bg-white bg-opacity-75 flex justify-center items-center"
+        >
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-xl mb-4">Qual seu endereço?</h2>
+            <input
+              type="text"
+              id="addressInput"
+              placeholder="Digite seu endereço"
+              className="mb-4 p-2 border border-gray-300 rounded w-full"
+            />
+            <button
+              id="useLocation"
+              className="p-2 border border-gray-300 rounded w-full mb-4"
+            >
+              Use minha localização
+            </button>
+            <button
+              onClick={closeModal}
+              className="bg-red-500 text-white p-2 rounded w-full"
+            >
+              Fechar
+            </button>
+          </div>
         </div>
-      </div>
-      {/* JavaScript File */}
+      )}
     </>
   );
 }
