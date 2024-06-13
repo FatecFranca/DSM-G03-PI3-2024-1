@@ -1,14 +1,16 @@
-
 import app from "../app.js";
 import chalk from "chalk";
 import { createServer } from "http";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const port = normalizePort(process.env.PORT || "8080");
 app.set("port", port);
 const server = createServer(app);
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
-
 
 function normalizePort(val) {
   let port = parseInt(val, 10);
@@ -20,6 +22,7 @@ function normalizePort(val) {
   }
   return false;
 }
+
 function onError(error) {
   if (error.syscall !== "listen") {
     throw error;
@@ -38,8 +41,7 @@ function onError(error) {
       throw error;
   }
 }
+
 function onListening() {
-  let addr = server.address();
-  let bind = typeof addr === "string" ? `pipe  ${addr}` : `port ${addr.port}`;
-  console.log(chalk.cyan(`Listening on ${bind}.`));
+  console.log(chalk.cyan(`Listening on https://dsm-g03-pi3-2024-1-n0e0.onrender.com`));
 }
