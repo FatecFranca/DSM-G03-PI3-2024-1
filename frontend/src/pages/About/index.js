@@ -75,15 +75,15 @@ export default function About() {
               necessidades de beleza.
             </p>
           </div>
-          <div className="text-center lg:w-2/3 w-full bg-white bg-slate-20 p-8 shadow-2xl">
-            <div className="flex justify-center">
-              <div className="h-48" style={Funcionarios}></div>
-            </div>
-            <p className="mb-8 mt-3 title-font sm:text-1xl text-1xl mb-4 font-medium text-gray-900 leading-relaxed">
+          <div className="text-center lg:w-2/3 w-full bg-white bg-slate-20 p-8">
+              <div className="flex justify-center h-56">
+                <div className="h-3/6" style={Funcionarios}></div>
+            <p className="mb-8 p-5 mt-3 title-font sm:text-1xl text-1xl mb-4 font-medium text-gray-900 leading-relaxed">
               O melhor lugar para encontrar profissionais de beleza e encontrar
               o que seu estilo de vida precisa. Acesse nosso site e encontre os
               melhores salões de beleza para voce e seus clientes.{' '}
             </p>
+              </div>
 
             <div className="flex justify-center">
               <div style={Logo}></div>

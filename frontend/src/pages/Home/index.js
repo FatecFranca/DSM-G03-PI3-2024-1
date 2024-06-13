@@ -11,24 +11,38 @@ const Logo = {
 };
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Começa visível
+  const [showMap, setShowMap] = useState(false);
+  const [address, setAddress] = useState('');
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
+  const handleInputChange = (event) => {
+    setAddress(event.target.value);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const searchLocation = () => {
+    if (address.trim() === '') {
+      alert('Por favor, insira um endereço.');
+      return;
+    }
+    setShowMap(true); // Mostrar o mapa ao realizar a pesquisa
+  };
+
+  const toggleMap = () => {
+    setShowMap(!showMap);
+  };
+
+  const handleFocus = () => {
+    setIsVisible(false); // Esconde o ícone ao focar no input
+  };
+
+  const handleBlur = () => {
+    setIsVisible(true); // Mostra o ícone ao desfocar o input
   };
 
   return (
     <>
       <meta charSet="UTF-8" />
-      <title>
-        SalonConnect - Encontre profissionais de beleza perto de você
-      </title>
+      <title>SalonConnect - Encontre profissionais de beleza perto de você</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       {/* Header Section */}
       <header className="text-gray-600 body-font shadow-sm">
@@ -70,89 +84,60 @@ export default function Home() {
                   name="service-search"
                   placeholder="      Pesquisar"
                   className="w-full bg-white rounded border border-gray-400 focus:outline-none focus:border-gray-500 text-base px-4 py-2"
-                  onFocus={() => setIsVisible(!isVisible)}
-                  onBlur={() => setIsVisible(!isVisible)}
-                  onClick={openModal}
+                  value={address}
+                  onChange={handleInputChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
                 />
-
-                <div
-                  style={{ position: 'absolute', left: 10, top: 10 }}
-                  className={isVisible ? 'hidden' : 'visible'}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="#F4991A"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                    />
-                  </svg>
-                </div>
+                {isVisible && (
+                  <div style={{ position: 'absolute', left: 10, top: 10 }}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="#F4991A"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                      />
+                    </svg>
+                  </div>
+                )}
               </div>
-              <button className="inline-flex text-white custom-color border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">
+              <button onClick={searchLocation} className="inline-flex text-white custom-color border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">
                 Salões próximos
               </button>
             </div>
           </div>
         </div>
       </main>
-      <div
-        id="addressModal"
-        className="hidden fixed inset-0 bg-white bg-opacity-75 flex justify-center items-center"
-      >
-        <div className="bg-white rounded-lg p-8">
-          <h2 className="text-xl mb-4">Qual seu endereço?</h2>
-          <input
-            type="text"
-            id="addressInput"
-            placeholder="Digite seu endereço"
-            className="mb-4 p-2 border border-gray-300 rounded w-full"
-          />
-          <button
-            id="useLocation"
-            className="p-2 border border-gray-300 rounded w-full mb-4"
-          >
-            Use minha localização
-          </button>
-          <button
-            id="closeModal"
-            className="bg-red-500 text-white p-2 rounded w-full"
-          >
-            Fechar
-          </button>
-        </div>
-      </div>
-      {isModalOpen && (
+      {showMap && (
         <div
-          id="addressModal"
-          className="fixed inset-0 bg-white bg-opacity-75 flex justify-center items-center"
+          id="mapModal"
+          className="fixed w-full inset-0 bg-white w-full bg-opacity-75 flex justify-center items-center"
         >
-          <div className="bg-white rounded-lg p-8">
-            <h2 className="text-xl mb-4">Qual seu endereço?</h2>
-            <input
-              type="text"
-              id="addressInput"
-              placeholder="Digite seu endereço"
-              className="mb-4 p-2 border border-gray-300 rounded w-full"
-            />
+          <div className="bg-white w-3/4 h-3/4 rounded-lg p-8 max-w-4xl">
+            <h2 className="text-xl mb-4">Salões Próximos</h2>
             <button
-              id="useLocation"
-              className="p-2 border border-gray-300 rounded w-full mb-4"
+              onClick={toggleMap}
+              className="bg-red-500 text-white p-2 rounded mb-4 w-full"
             >
-              Use minha localização
+              Fechar Mapa
             </button>
-            <button
-              onClick={closeModal}
-              className="bg-red-500 text-white p-2 rounded w-full"
-            >
-              Fechar
-            </button>
+            <div className="w-full h-5/6 pt-5">
+              <iframe
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                style={{ border: 0 }}
+                src={`https://www.google.com/maps/embed/v1/search?key=AIzaSyCXBCg6XPdFKwO7TUIu97a6zx7bWw4a6-A&q=${encodeURIComponent(address + ' salões')}`}
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
         </div>
       )}
