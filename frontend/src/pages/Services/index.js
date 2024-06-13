@@ -32,6 +32,14 @@ export default function Services() {
     height: '100%',
   };
 
+  const Cabeleleiro = {
+    backgroundImage: `url(${require('../../img/Cabeleleiro.jpg')})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    width: '13vw',
+    height: '100%',
+  };
+
   const services = [
     {
       style: {
@@ -486,12 +494,12 @@ export default function Services() {
                                       <div className="w-36">
                                         <div
                                           className="flex justify-center align-center col-span-2 rounded-full"
-                                          style={service.style}
+                                          style={Cabeleleira}
                                         ></div>
                                       </div>
                                     </div>
-                                    <div className="h-full flex justify-center align-center mt-5 p-5">
-                                      <p>Nome</p>
+                                    <div className="h-full flex justify-center align-center mt-5 p-5 w-full">
+                                      <p>Hair Saloon</p>
                                     </div>
                                   </div>
                                 </div>
@@ -525,12 +533,12 @@ export default function Services() {
                                       <div className="w-36">
                                         <div
                                           className="flex justify-center align-center col-span-2 rounded-full"
-                                          style={service.style}
+                                          style={Cabeleleiro}
                                         ></div>
                                       </div>
                                     </div>
-                                    <div className="h-full flex justify-center align-center mt-5 p-5">
-                                      <p>Nome</p>
+                                    <div className="h-full flex justify-center align-center mt-5 p-5 w-full">
+                                      <p>Alfredo Barbershop</p>
                                     </div>
                                   </div>
                                 </div>
