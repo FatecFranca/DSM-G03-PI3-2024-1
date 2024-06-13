@@ -18,7 +18,6 @@ const app = express();
 
 dotenv.config();
 
-
 import mongoose from 'mongoose';
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => console.log(chalk.green('Conectado ao MongoDB Atlas')))
@@ -31,15 +30,12 @@ app.use(cookieParser());
 app.use(cors());
 
 
-const baseURL = 'https://dsm-g03-pi3-2024-1-n0e0.onrender.com';
-
-
-app.use(`${baseURL}/`, indexRouter);
-app.use(`${baseURL}/users`, usersRouter);
-app.use(`${baseURL}/cliente`, clienteRouter);
-app.use(`${baseURL}/empresa`, empresaRouter);
-app.use(`${baseURL}/servico`, servicoRouter);
-app.use(`${baseURL}/atendimento`, atendimentoRouter);
-app.use(`${baseURL}/carrinho`, carrinhoRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/cliente', clienteRouter);
+app.use('/empresa', empresaRouter);
+app.use('/servico', servicoRouter);
+app.use('/atendimento', atendimentoRouter);
+app.use('/carrinho', carrinhoRouter);
 
 export default app;
