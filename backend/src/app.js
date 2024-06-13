@@ -1,11 +1,9 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import express, { json, urlencoded } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import chalk from 'chalk';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
@@ -17,11 +15,11 @@ import carrinhoRouter from './routes/carrinho.js';
 
 const app = express();
 
+
+dotenv.config();
+
 import mongoose from 'mongoose';
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.DATABASE_URL)
   .then(() => console.log(chalk.green('Conectado ao MongoDB Atlas')))
   .catch((error) => console.error(chalk.red('Erro ao conectar ao MongoDB Atlas', error)));
 
@@ -29,8 +27,8 @@ app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(cors());
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -41,4 +39,3 @@ app.use('/atendimento', atendimentoRouter);
 app.use('/carrinho', carrinhoRouter);
 
 export default app;
-
