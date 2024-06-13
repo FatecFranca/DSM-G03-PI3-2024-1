@@ -8,11 +8,14 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/Cliente', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await axios.get(
+          'https://dsm-g03-pi3-2024-1-n0e0.onrender.com/Cliente',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
         setData(response.data);
       } catch (error) {
         console.error('Erro ao buscar dados do dashboard', error);
