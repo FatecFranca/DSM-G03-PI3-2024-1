@@ -17,7 +17,7 @@ const Signup = () => {
     numero: '',
     complemento: '',
     loginUsu: '',
-    senhaUsu: ''
+    senhaUsu: '',
   });
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
@@ -29,7 +29,10 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/Cliente', formData);
+      const response = await axios.post(
+        'https://dsm-g03-pi3-2024-1-n0e0.onrender.com/Cliente',
+        formData,
+      );
       if (response.status === 201) {
         setMessage('Conta criada com sucesso!');
         navigate('/login');
@@ -199,7 +202,9 @@ const Signup = () => {
             style={styles.input}
           />
         </div>
-        <button type="submit" style={styles.button}>Criar Conta</button>
+        <button type="submit" style={styles.button}>
+          Criar Conta
+        </button>
       </form>
     </div>
   );
@@ -211,23 +216,23 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#f0f0f0'
+    backgroundColor: '#f0f0f0',
   },
   form: {
     padding: '20px',
     borderRadius: '5px',
     backgroundColor: '#fff',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   },
   inputGroup: {
-    marginBottom: '15px'
+    marginBottom: '15px',
   },
   input: {
     width: '100%',
     padding: '8px',
     marginTop: '5px',
     borderRadius: '4px',
-    border: '1px solid #ccc'
+    border: '1px solid #ccc',
   },
   button: {
     width: '100%',
@@ -236,8 +241,8 @@ const styles = {
     color: '#fff',
     border: 'none',
     borderRadius: '4px',
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 };
 
 export default Signup;

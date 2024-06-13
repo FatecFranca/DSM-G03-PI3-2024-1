@@ -13,15 +13,18 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/Cliente/login', {
-        loginUsu: username,
-        senhaUsu: password
-      });
+      const response = await axios.post(
+        'https://dsm-g03-pi3-2024-1-n0e0.onrender.com/Cliente/login',
+        {
+          loginUsu: username,
+          senhaUsu: password,
+        },
+      );
 
       if (response.status === 200) {
         setMessage('Login bem-sucedido');
         const { token } = response.data;
-        localStorage.setItem('token', token);  // Armazenar o token
+        localStorage.setItem('token', token); // Armazenar o token
         setAuth(true);
         navigate('/dashboard');
       }

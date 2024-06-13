@@ -30,7 +30,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8080/Cliente',
+        'https://dsm-g03-pi3-2024-1-n0e0.onrender.com/Cliente',
         formData,
       );
       if (response.status === 201) {
@@ -293,7 +293,10 @@ const Signup = () => {
           </div>
           <div className="w-2/4 bg-white bg-slate-200	 p-8 pt-0 shadow-2xl  relative">
             <div className="text-center d-flex justify-center gap-3 h-full">
-              <div className="flex justify-center items-center w-full" style={{ height: '97%' }}>
+              <div
+                className="flex justify-center items-center w-full"
+                style={{ height: '97%' }}
+              >
                 <div style={Person}></div>
               </div>
               <div className="flex justify-end">

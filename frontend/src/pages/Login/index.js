@@ -12,10 +12,13 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/cliente/login', {
-        loginUsu: username,
-        senhaUsu: password,
-      });
+      const response = await axios.post(
+        'https://dsm-g03-pi3-2024-1-n0e0.onrender.com/cliente/login',
+        {
+          loginUsu: username,
+          senhaUsu: password,
+        },
+      );
 
       if (response.status === 200) {
         const { token } = response.data;
