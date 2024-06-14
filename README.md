@@ -27,8 +27,6 @@ Jira = `https://projeto-fatec.atlassian.net/browse/PI-4?atlOrigin=eyJpIjoiMmRmZG
 
 Deploy back-end (vide meio de acesso tokenizado abaixo) = `https://dsm-g03-pi3-2024-1-n0e0.onrender.com/cliente`
 
-Postman Docummenter = ``
-
 ## FRONT-END
 
 ### Tecnologias
